@@ -1,0 +1,54 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1em 0;
+}
+
+h1, h2 {
+    margin: 0.5em 0;
+}
+
+main {
+    padding: 2em;
+}
+
+.artists {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2em;
+}
+
+.artist-card {
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 1em;
+    width: 200px;
+    text-align: center;
+}
+
+.artist-card img {
+    max-width: 100%;
+    height: auto;
+}
+
+.artist-card h3 {
+    margin: 0.5em 0;
+}
+
+.artist-card p {
+    color: #666;
+}
+
+.artist-card a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+}
