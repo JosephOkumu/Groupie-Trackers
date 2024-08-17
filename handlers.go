@@ -7,7 +7,7 @@ import (
 
 func indexHandler(w http.ResponseWriter, r *http.Request) {
     var artists []Artist
-    err := fetchAPI("https://api.example.com/artists", &artists)
+    err := fetchAPI("https://groupietrackers.herokuapp.com/api/artists", &artists)
     if err != nil {
         http.Error(w, "Failed to load artists", http.StatusInternalServerError)
         return
@@ -26,7 +26,7 @@ func artistHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     var artist Artist
-    err := fetchAPI("https://api.example.com/artists/"+id, &artist)
+    err := fetchAPI("https://groupietrackers.herokuapp.com/api/artists"+id, &artist)
     if err != nil {
         http.Error(w, "Failed to load artist", http.StatusInternalServerError)
         return
