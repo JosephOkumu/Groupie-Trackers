@@ -7,15 +7,17 @@ import (
 
 type Artist struct {
     ID          int      `json:"id"`
-    Name        string   `json:"name"`
     Image       string   `json:"image"`
-    Year        int      `json:"year"`
-    FirstAlbum  string   `json:"first_album"`
+    Name        string   `json:"name"`
     Members     []string `json:"members"`
+    CreationDate int      `json:"date"`
+    FirstAlbum  string   `json:"first_album"`
+    
 }
 
 type Location struct {
-    Locations []string `json:"locations"`
+	ID        int      `json:"id"`
+	Locations []string `json:"locations"`
 }
 
 type Date struct {
@@ -23,10 +25,8 @@ type Date struct {
 }
 
 type Relation struct {
-    Index map[string]struct {
-        Dates    []string `json:"dates"`
-        Locations []string `json:"locations"`
-    } `json:"index"`
+	ID            int                 `json:"id"`
+	DatesLocations map[string][]string `json:"datesLocations"`
 }
 
 func fetchAPI(url string, target interface{}) error {
