@@ -1,18 +1,13 @@
 package main
 
-import (
-    "encoding/json"
-    "net/http"
-)
-
+// Define your data structures
 type Artist struct {
-    ID          int      `json:"id"`
-    Image       string   `json:"image"`
-    Name        string   `json:"name"`
-    Members     []string `json:"members"`
-    CreationDate int      `json:"date"`
-    FirstAlbum  string   `json:"first_album"`
-    
+	ID           int      `json:"id"`
+	Image        string   `json:"image"`
+	Name         string   `json:"name"`
+	Members      []string `json:"members"`
+	CreationDate int      `json:"creationDate"`
+	FirstAlbum   string   `json:"firstAlbum"`
 }
 
 type Location struct {
@@ -21,19 +16,16 @@ type Location struct {
 }
 
 type Date struct {
-    Dates []string `json:"dates"`
+	Dates []string `json:"dates"`
 }
 
 type Relation struct {
-	ID            int                 `json:"id"`
+	ID             int                 `json:"id"`
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
 
-func fetchAPI(url string, target interface{}) error {
-    resp, err := http.Get(url)
-    if err != nil {
-        return err
-    }
-    defer resp.Body.Close()
-    return json.NewDecoder(resp.Body).Decode(target)
+type ArtistInfo struct {
+	Artist   Artist
+	Location []string
+	Dates    []string
 }
