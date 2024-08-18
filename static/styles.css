@@ -1,31 +1,99 @@
 /* General body styling */
 body {
     background-image: linear-gradient(#833ab4, #fd1d1d, #fcb045);
-  }
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
 
+/* Navbar styling */
+.navbar {
+    background-color: #333;
+    overflow: hidden;
+    padding: 10px 20px;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.navbar a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+/* Logo styling */
+.navbar .logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #f2f2f2;
+    padding-right: 20px;
+}
+
+/* Clear floats after navbar links */
+.navbar::after {
+    content: "";
+    clear: both;
+    display: table;
+}
 
 /* Header styling */
 header {
-    background-color: rgba(51, 51, 51, 0.8); /* Semi-transparent background */
     color: white;
     text-align: center;
     padding: 1em 0;
-}
-
-/* Heading styling */
-h1, h2 {
-    margin: 0.5em 0;
+    background-color: rgba(51, 51, 51, 0.8);
 }
 
 /* Main content padding */
 main {
     padding: 2em;
+    text-align: center; /* Center align all content within main */
+}
+
+/* Centered section styling */
+.artist-info {
+    display: inline-block;
+    text-align: center; /* Center text and other content */
+}
+
+/* Styling for lists within artist-info */
+.artist-info ul {
+    list-style-position: inside; /* Keeps bullet points inside the content area */
+    padding: 0;
+    margin: 0 auto; /* Centers the list within the container */
+    max-width: 800px; /* Limits the width of text content */
+}
+
+.artist-info li {
+    text-align: center; /* Center text for list items */
+}
+
+/* Styling for images */
+.artist-info img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px; /* Rounds the corners of the image */
+    margin-bottom: 1em; /* Adds space below the image */
+}
+
+/* Styling for details sections */
+.artist-info p {
+    margin: 0 auto;
+    padding: 0.5em 0;
+    max-width: 800px; /* Limits the width of text content */
+    text-align: center; /* Center align text */
 }
 
 /* Grid layout for artist cards */
 .artists-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* Fixed 4 columns per row */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Responsive grid */
     gap: 2em;
 }
 
@@ -37,12 +105,13 @@ main {
     text-align: center;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds shadow for card */
     border-radius: 8px; /* Rounds the corners of the card */
-    transition: transform 0.3s ease; /* Smooth scaling effect on hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth scaling effect on hover */
 }
 
 /* Hover effect for artist card */
 .artist-card:hover {
     transform: translateY(-5px); /* Moves card slightly up */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Increase shadow on hover */
 }
 
 /* Styling for images within cards */
@@ -69,20 +138,18 @@ main {
     color: #0056b3;
 }
 
-
 /* Carousel Container */
 .carousel {
     position: relative;
     width: 100%; /* Ensure the carousel takes the full width of the parent */
     overflow: hidden; /* Hide overflow to keep images within bounds */
+    margin-bottom: 2em; /* Adds space below carousel */
 }
-
 
 /* Carousel Slide */
 .carousel-slide {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 100%
 }
 
 .carousel-slide img {
@@ -91,7 +158,6 @@ main {
     display: block; /* Remove extra space below images */
 }
 
-
 /* Navigation Arrows */
 .prev, .next {
     cursor: pointer;
@@ -99,13 +165,13 @@ main {
     top: 50%;
     width: auto;
     padding: 16px;
-    margin-top: -22px;
     color: white;
     font-weight: bold;
     font-size: 18px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
     user-select: none;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
 }
 
 .next {
@@ -114,5 +180,56 @@ main {
 }
 
 .prev:hover, .next:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .navbar a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .artists-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusts the grid layout on smaller screens */
+    }
+
+    .carousel-slide img {
+        width: 100%; /* Ensures full-width images on smaller screens */
+    }
+}
+
+/* Back Button Styling */
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+/* Concert Details Table Styling */
+.concert-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.concert-details th, .concert-details td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.concert-details th {
+    background-color: #f2f2f2;
 }
