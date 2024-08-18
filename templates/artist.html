@@ -4,23 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/styles.css">
-    <title>{{.Name}} - Groupie Trackers</title>
+    <title>{{.Artist.Name}} - Groupie Trackers</title>
 </head>
 <body>
     <header>
-        <h1>{{.Name}}</h1>
+        <h1>{{.Artist.Name}}</h1>
     </header>
     <main>
         <section>
-            <img src="{{.Image}}" alt="{{.Name}}">
+            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
             <h2>Members:</h2>
             <ul>
-                {{range .Members}}
-                <li>{{.}}</li>
+                {{if .Artist.Members}}
+                    {{range .Artist.Members}}
+                    <li>{{.}}</li>
+                    {{end}}
+                {{else}}
+                    <li>No members available.</li>
+                {{end}}
+            </ul>            
+            <p>Year Started: {{.Artist.CreationDate}}</p>
+            <p>First Album: {{.Artist.FirstAlbum}}</p>
+
+            <h2>Concert Locations and Dates:</h2>
+            <ul>
+                {{range $location, $dates := .Relation.DatesLocations}}
+                <li>
+                    <strong>{{ $location }}</strong>
+                    <ul>
+                        {{range $dates}}
+                        <li>{{.}}</li>
+                        {{end}}
+                    </ul>
+                </li>
                 {{end}}
             </ul>
-            <p>First Album: {{.FirstAlbum}}</p>
-            <p>Year Started: {{.Year}}</p>
         </section>
     </main>
 </body>
