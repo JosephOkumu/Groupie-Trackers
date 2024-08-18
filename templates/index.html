@@ -14,13 +14,16 @@
         <section>
             <h2>Artists</h2>
             <div class="artists">
-                {{range .}}
-                <div class="artist-card">
-                    <img src="{{.Image}}" alt="{{.Name}}">
-                    <h3>{{.Name}}</h3>
-                    <p>First Album: {{.FirstAlbum}}</p>
-                    <a href="/artist?id={{.ID}}">View Details</a>
-                </div>
+                {{if .}}
+                    {{range .}}
+                    <div class="artist-card">
+                        <img src="{{.Image}}" alt="Image of {{.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
+                        <h3>{{.Name}}</h3>                        
+                        <a href="/artist?id={{.ID}}">View Details</a>
+                    </div>
+                    {{end}}
+                {{else}}
+                    <p>No artists available at the moment.</p>
                 {{end}}
             </div>
         </section>
