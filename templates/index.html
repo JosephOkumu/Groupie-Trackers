@@ -3,44 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css">
-    <title>Groupie Trackers</title>
+    <link rel="stylesheet" href="/static/styles.css">   
+    <title>{{.Artist.Name}} - Groupie Trackers</title>
 </head>
 <body>
     <header>
-        <h1>Groupie Trackers</h1>
+        <h1>{{.Artist.Name}}</h1>
     </header>
     <main>
-        <!-- Carousel Section -->
-        <section class="carousel">
-            <div class="carousel-container">
-                <div class="carousel-slide">
-                    <img src="/static/images/Groupie1.jpg" alt="Image 1">                   
-                    <img src="/static/images/groupie3.jpg" alt="Image 2">
-                    <!-- Add more images as needed -->
-                </div>
-                <a class="prev" onclick="moveSlide(-1)">&#10094;</a>
-                <a class="next" onclick="moveSlide(1)">&#10095;</a>
-            </div>
-        </section>
-
-        <section>
-            <h2>Artists</h2>
-            <div class="artists-grid">
-                {{if .}}
-                    {{range .}}
-                    <div class="artist-card">
-                        <img src="{{.Image}}" alt="Image of {{.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
-                        <h3>{{.Name}}</h3>                        
-                        <a href="/artist?id={{.ID}}">View Details</a>
-                    </div>
+        <section class="artist-info">
+            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
+            <h2>Members:</h2>
+            <ul>
+                {{if .Artist.Members}}
+                    {{range .Artist.Members}}
+                    <li>{{.}}</li>
                     {{end}}
                 {{else}}
-                    <p>No artists available at the moment.</p>
+                    <li>No members available.</li>
                 {{end}}
-            </div>
+            </ul>
+            <p>Year Started: {{.Artist.CreationDate}}</p>
+            <p>First Album: {{.Artist.FirstAlbum}}</p>
+
+            <h2>Concert Locations and Dates:</h2>
+            <ul>
+                {{range $location, $dates := .Relation.DatesLocations}}
+                <li>
+                    <strong>{{ $location }}</strong>
+                    <ul>
+                        {{range $dates}}
+                        <li>{{.}}</li>
+                        {{end}}
+                    </ul>
+                </li>
+                {{end}}
+            </ul>
         </section>
     </main>
-    <script src="/static/scripts/carousel.js"></script>
 </body>
 </html>
