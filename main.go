@@ -9,7 +9,11 @@ import (
 var tmpl *template.Template
 
 func main() {
-    tmpl = template.Must(template.ParseGlob("templates/*.html"))
+    var err error
+    tmpl, err = template.ParseGlob("templates/*.html")
+    if err != nil {
+        log.Fatalf("Error parsing templates: %v", err)
+    }
 
     http.HandleFunc("/", indexHandler)
     http.HandleFunc("/artist", artistHandler)
