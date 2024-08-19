@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css">   
+    <link rel="stylesheet" href="/static/styles.css">
+    <link rel="icon" type="image/x-icon" href="/static/images/favicon.ico">   
     <title>{{.Artist.Name}} - Groupie Trackers</title>
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-container">
-            <a href="/" class="navbar-logo">Groupie Trackers</a>
+            <a href="/" class="navbar-logo">
+                <img src="/static/images/favicon96.png" alt="Groupie Trackers Logo" class="navbar-logo-image"> 
+                Groupie Trackers
+            </a>
             <ul class="navbar-menu">
                 <li><a href="/" class="navbar-item">Home</a></li>
                 <li><a href="/artists" class="navbar-item">Artists</a></li>
@@ -24,7 +28,7 @@
     </header>
     <main>
         <section class="artist-info">
-            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
+            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/favicon32.png';">
             <p>Year Started: {{.Artist.CreationDate}}</p>
             <p>First Album: {{.Artist.FirstAlbum}}</p>
             
