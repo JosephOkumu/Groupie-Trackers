@@ -3,42 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/static/styles.css">   
-    <title>{{.Artist.Name}} - Groupie Trackers</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <title>Artists - Groupie Trackers</title>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Groupie Trackers</a>
+            <ul class="navbar-menu">
+                <li><a href="/" class="navbar-item">Home</a></li>
+                <li><a href="/artists" class="navbar-item">Artists</a></li>
+                <li><a href="/locations" class="navbar-item">Locations</a></li>
+                <li><a href="/about" class="navbar-item">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <header>
-        <h1>{{.Artist.Name}}</h1>
+        <h1>Artists</h1>
     </header>
     <main>
-        <section class="artist-info">
-            <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
-            <h2>Members:</h2>
-            <ul>
-                {{if .Artist.Members}}
-                    {{range .Artist.Members}}
-                    <li>{{.}}</li>
-                    {{end}}
-                {{else}}
-                    <li>No members available.</li>
+        <section class="artists-grid">
+            {{if .}}
+                {{range .}}
+                <div class="artist-card">
+                    <a href="/artist?id={{.ID}}">
+                        <img src="{{.Image}}" alt="Image of {{.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
+                        <h2>{{.Name}}</h2>
+                    </a>                    
+                    <a href="/artist?id={{.ID}}" class="view-details-link">View Details</a>
+                </div>
                 {{end}}
-            </ul>
-            <p>Year Started: {{.Artist.CreationDate}}</p>
-            <p>First Album: {{.Artist.FirstAlbum}}</p>
-
-            <h2>Concert Locations and Dates:</h2>
-            <ul>
-                {{range $location, $dates := .Relation.DatesLocations}}
-                <li>
-                    <strong>{{ $location }}</strong>
-                    <ul>
-                        {{range $dates}}
-                        <li>{{.}}</li>
-                        {{end}}
-                    </ul>
-                </li>
-                {{end}}
-            </ul>
+            {{else}}
+                <p>No artists available.</p>
+            {{end}}
         </section>
     </main>
 </body>
