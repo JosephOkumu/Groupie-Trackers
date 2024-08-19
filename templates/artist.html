@@ -7,12 +7,27 @@
     <title>{{.Artist.Name}} - Groupie Trackers</title>
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">Groupie Trackers</a>
+            <ul class="navbar-menu">
+                <li><a href="/" class="navbar-item">Home</a></li>
+                <li><a href="/artists" class="navbar-item">Artists</a></li>
+                <li><a href="/locations" class="navbar-item">Locations</a></li>
+                <li><a href="/about" class="navbar-item">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <header>
         <h1>{{.Artist.Name}}</h1>
     </header>
     <main>
         <section class="artist-info">
             <img src="{{.Artist.Image}}" alt="Image of {{.Artist.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
+            <p>Year Started: {{.Artist.CreationDate}}</p>
+            <p>First Album: {{.Artist.FirstAlbum}}</p>
+            
             <h2>Members:</h2>
             <ul>
                 {{if .Artist.Members}}
@@ -23,22 +38,32 @@
                     <li>No members available.</li>
                 {{end}}
             </ul>            
-            <p>Year Started: {{.Artist.CreationDate}}</p>
-            <p>First Album: {{.Artist.FirstAlbum}}</p>
 
             <h2>Concert Locations and Dates:</h2>
-            <ul>
-                {{range $location, $dates := .Relation.DatesLocations}}
-                <li>
-                    <strong>{{ $location }}</strong>
-                    <ul>
-                        {{range $dates}}
-                        <li>{{.}}</li>
+            <section class="concert-details">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Location</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{range $location, $dates := .Relation.DatesLocations}}
+                            {{range $dates}}
+                            <tr>
+                                <td>{{ $location }}</td>
+                                <td>{{.}}</td>
+                            </tr>
+                            {{end}}
+                        {{else}}
+                        <tr>
+                            <td colspan="2">No concert information available.</td>
+                        </tr>
                         {{end}}
-                    </ul>
-                </li>
-                {{end}}
-            </ul>
+                    </tbody>
+                </table>
+            </section>
         </section>
     </main>
 </body>
