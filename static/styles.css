@@ -1,6 +1,6 @@
 /* General body styling */
 body {
-    background-image: linear-gradient(#fdbb2d, #b21f1f, #1a2a6c);
+    background-image: linear-gradient(#fdbb2d, #b21f1f);
     margin: 0;
     font-family: Arial, sans-serif;
 }
@@ -286,4 +286,15 @@ main {
     }
 }
 
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+  }
+  
+  footer p {
+    margin: 0;
+  }
 
