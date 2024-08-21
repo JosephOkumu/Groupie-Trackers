@@ -17,6 +17,7 @@ func main() {
 
     http.HandleFunc("/", indexHandler)
     http.HandleFunc("/artist", artistHandler)
+    http.HandleFunc("/search", searchHandler)
     http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 
     log.Println("Server started on :8080")
