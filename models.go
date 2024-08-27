@@ -23,9 +23,3 @@ type Relation struct {
 	ID             int                 `json:"id"`
 	DatesLocations map[string][]string `json:"datesLocations"`
 }
-
-type ArtistInfo struct {
-	Artist   Artist
-	Location []string
-	Dates    []string
-}
