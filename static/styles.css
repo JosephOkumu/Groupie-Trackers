@@ -287,6 +287,9 @@ footer {
     text-align: center;
     padding: 20px;
     margin-top: auto;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }
 
 footer p {
