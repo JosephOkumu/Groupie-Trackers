@@ -179,6 +179,14 @@ main {
     gap: 2em;
 }
 
+.results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2em;
+    max-width: 20%;
+    margin: 0 auto;
+}
+
 /* Styling for each artist card */
 .artist-card {
     background-color: white;
