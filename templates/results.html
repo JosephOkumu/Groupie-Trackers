@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/styles.css">
+   
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">
+                <img src="/static/images/logofavi.ico" alt="Groupie Trackers Logo" class="navbar-logo-image"> 
+                Groupie Trackers
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="/" class="navbar-item">Home</a></li>                
+                <li><a href="/about" class="navbar-item">About</a></li>
+                <li><form action="/search" method="GET" style="display: flex; align-items: center;" class="navbar-search">
+                    <input type="text" name="query" placeholder="Search..." style="padding-right: 30px;">
+                    <button type="submit" style="background: none; border: none; position: relative; right: 30px; padding: 0;">
+                        <i class="fas fa-search" style="color: #fff;"></i>
+                    </button>
+                </form></li>
+            </ul>
+        </div>
+    </nav>
+    <header>
+        <h1>Search Results</h1>
+    </header>
+    <main> 
+    <section class="results">
+        <div class="artists-grid">
+            {{range .}}
+            <div class="artist-card">
+                <a href="/artist?id={{.ID}}">
+                    <img src="{{.Image}}" alt="Image of {{.Name}}" onerror="this.onerror=null;this.src='/static/images/placeholder.jpg';">
+                    <h2>{{.Name}}</h2>
+                </a>
+                <a href="/artist?id={{.ID}}" class="view-details-link">View Details</a>
+            </div>
+            {{end}}
+        </div>
+    </section>
+    </main>
+    <footer>
+        <div class = "footer-content">
+            <p>&copy; 2024 Groupie Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
